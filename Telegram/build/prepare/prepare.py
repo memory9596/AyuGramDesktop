@@ -61,6 +61,7 @@ optionsList = [
     'qt6',
     'skip-release',
     'skip-debug',
+    'skip-dump-syms',
     'build-stackwalk',
 ]
 options = []
@@ -258,6 +259,11 @@ def filterByPlatform(commands):
                     continue
             if 'debug' in scopes:
                 if 'skip-debug' in options:
+                    inscope = False
+                elif len(scopes) == 1:
+                    continue
+            if 'dumpsyms' in scopes:
+                if 'skip-dump-syms' in options:
                     inscope = False
                 elif len(scopes) == 1:
                     continue
@@ -1448,6 +1454,7 @@ win_debug:
     ninja -C out/Debug%FolderPostfix% common crash_generation_client exception_handler
 win_release:
     ninja -C out/Release%FolderPostfix% common crash_generation_client exception_handler
+win32_win64_release_dumpsyms:
     cd tools\\windows\\dump_syms
     gyp dump_syms.gyp --format=msvs
     msbuild -m dump_syms.vcxproj /property:Configuration=Release /property:Platform="x64" %ToolsetProp%
