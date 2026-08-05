@@ -1606,7 +1606,6 @@ win:
     SET WEBP_DIR=%LIBS_DIR%\\libwebp
     configure -prefix "%LIBS_DIR%\\Qt-%QT%" ^
         %CONFIGURATIONS% ^
-        -force-debug-info ^
         -opensource ^
         -confirm-license ^
         -static ^
@@ -1669,7 +1668,6 @@ mac:
     ./configure -prefix "$USED_PREFIX/Qt-$QT" \
         $CONFIGURATIONS \
         $ASSERTS \
-        -force-debug-info \
         -opensource \
         -confirm-license \
         -static \
@@ -1722,7 +1720,6 @@ win:
     configure -prefix "%LIBS_DIR%\\Qt-%QT%" ^
         %CONFIGURATIONS% ^
         %ASSERTS% ^
-        -force-debug-info ^
         -opensource ^
         -confirm-license ^
         -static ^
